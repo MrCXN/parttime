@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--公司 -->
+<mapper namespace="com.lzy.parttime.dao.AdvertisingDao">
+	<!-- 公司列表 -->
+	<select id="findAdvertisingList" parameterType="map" resultType="advertising">
+		SELECT
+			c.id,
+			c.`name`,
+			c.salary,
+			c.sex,
+			c.age
+		FROM
+			`advertising` c
+		WHERE
+		<include refid="getAdvertisingListCon" />
+		ORDER BY
+			c.id DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 公司列表数 -->
+	<select id="findAdvertisingListCount" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			advertising c
+		WHERE
+		<include refid="getAdvertisingListCon" />
+	</select>
+	
+	<sql id="getAdvertisingListCon">
+			c.delFlag = 0
+			AND c.companyId	=#{companyId}
+		<if test="name!=''">
+			AND 
+				c.`name` like '%${name}%'
+		</if>
+	</sql>
+	
+	
+	<insert id="saveAdvertising" parameterType="map">
+		INSERT INTO advertising (
+			NAME,
+			salary,
+			sex,
+			age,
+			companyId
+		)
+		VALUES
+			(
+				#{name},
+				#{salary},
+				#{sex},
+				#{age},
+				#{companyId}
+			)
+	</insert>
+	
+	<update id="delAdvertisingById" parameterType="map">
+		UPDATE advertising
+		SET delFlag = 1
+		WHERE
+			id = #{id}
+	</update>
+	
+	<!-- 通过id查询公司 -->
+	<select id="getgetAdvertisingById" parameterType="map" resultType="advertising">
+		SELECT
+			NAME,
+			salary,
+			age,
+			sex
+		FROM
+			advertising c
+		WHERE
+			c.id=#{id}
+	</select>
+	
+	<!-- 编辑公司 -->
+	<update id="editAdvertising" parameterType="map">
+		UPDATE advertising
+		SET name = #{name},salary = #{salary},age = #{age},sex = #{sex}
+		WHERE
+			id = #{id}
+	</update>
+	
+</mapper>

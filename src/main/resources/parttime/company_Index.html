@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>Table</title>
+		<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../css/global.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css"/>
+		<link rel="stylesheet" href="../css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+
+			<blockquote class="layui-elem-quote">
+				<div class="layui-input-inline">
+					公司名称:
+				</div>
+				<div class="layui-input-inline">
+					<input type="text" id="name" name="name" class="layui-input"/>
+				</div>
+				<div class="layui-input-inline">
+					时间:
+				</div>
+				<div class="layui-input-inline">
+					<input type="text" id="addTime" name="addTime" class="layui-input"/>
+				</div>
+				<a href="javascript:;" class="layui-btn" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+				<a href="javascript:;" class="layui-btn " id="add">
+					<i class="layui-icon">&#xe608;</i> 添加公司
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>公司详情</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" /> </th>
+								<th>名称</th>
+								<th>创建时间</th>
+								<th>简介</th>
+								<th>公司类型</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="company">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="paged" class="page">
+				</div>
+			</div>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, i){ }}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary" /></td>
+				<td>{{ i.name }}</td>
+				<td>{{ i.addTime }}</td>
+				<td>{{ i.introduce }}</td>
+				<td>{{ i.type }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ i.id }}" class="layui-btn layui-btn-mini edit">编辑</a>
+					<a href="javascript:;" data-id="{{ i.id }}" data-name="{{ i.name }}" class="layui-btn layui-btn-primary layui-btn-mini select" lay-filter="select">查看</a>
+					<a href="javascript:;" data-id="{{ i.id }}"  class="layui-btn layui-btn-danger layui-btn-mini del">删除</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		<script type="text/javascript" src="../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../js/company_index.js"></script>
+	</body>
+
+</html>
