@@ -31,9 +31,9 @@ layui.config({
 					}else{
 						// 对data操作
 						// 1、图片回显
-						$("#allUrl").attr("src", data.allUrl);
+						$("#allUrl").attr("src","../images/0908763aaf4743be9bc3ea8eb90c6882.jpg");
 						// 2、设置隐藏域的值
-						$("#imgUrl").val(data.imgUrl);
+						$("#imgUrl").val("../images/0908763aaf4743be9bc3ea8eb90c6882.jpg");
 					}
 				}
 			}
