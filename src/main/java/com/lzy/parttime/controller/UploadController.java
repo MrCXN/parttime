@@ -50,9 +50,9 @@ public class UploadController {
 				// 上传
 				pic.transferTo(new File(imgUrl));
 				
-				String realPaths = "D:\\cxn-file\\Spring-Tool-Data\\seek\\src\\main\\resources\\static\\images\\";
-				String imgUrls = realPath + newName;
-				pic.transferTo(new File(imgUrls));
+				//String realPaths = "D:\\cxn-file\\Spring-Tool-Data\\seek\\src\\main\\resources\\static\\images\\";
+				//String imgUrls = realPath + newName;
+				//pic.transferTo(new File(imgUrls));
 				
 				// 回显图片
 				jsonObject.put("allUrl", "../images/"+newName);
