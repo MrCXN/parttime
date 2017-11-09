@@ -38,7 +38,7 @@ layui.config({
 		var name = data.field.name;
 		var type = data.field.type;
 		var introduce = data.field.introduce;
-		var imgUrl = data.field.imgUrl;
+		var imgUrl = data.field.imgUrl||"../images/nophoto.png";
 		
 		$.post('../company/saveCompany', {
 			name : name,
