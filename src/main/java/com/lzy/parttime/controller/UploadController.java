@@ -32,27 +32,10 @@ public class UploadController {
 				jsonObject.put("msg", "图片过大");
 				jsonObject.put("code", 500); // 保存图片地址
 			}else{
-				// 图片上传。
-				//String realPath = request.getSession().getServletContext().getRealPath(""); // 项目的真实路径
-				
-				
-//				File file = new File(realPath,"upload");  
-//				if (!file.exists()) {  
-//					file.mkdirs();  
-//				}  
-//				String imgUrl = "\\upload\\" + newName; // 相对路径
-//				
-//				String allUrl = realPath + imgUrl;
-				
-				
-				String realPath = "C:\\Users\\admin\\Desktop\\parttime\\src\\main\\resources\\static\\images\\";
+				String realPath = "D:\\imagesuuuu\\";
 				String imgUrl = realPath + newName; // 相对路径
 				// 上传
 				pic.transferTo(new File(imgUrl));
-				
-				//String realPaths = "D:\\cxn-file\\Spring-Tool-Data\\seek\\src\\main\\resources\\static\\images\\";
-				//String imgUrls = realPath + newName;
-				//pic.transferTo(new File(imgUrls));
 				
 				// 回显图片
 				jsonObject.put("allUrl", "../images/"+newName);
