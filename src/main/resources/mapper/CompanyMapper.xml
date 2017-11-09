@@ -91,4 +91,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			id = #{id}
 	</update>
 	
+	
+	
+	<!-- 人员列表 -->
+	<select id="getSeekUserList" parameterType="map" resultType="seekUser">
+		SELECT
+			c.id,
+			c.`seekNm`,
+			c.password,
+			c.phone
+		FROM
+			`seekuser` c
+		WHERE
+		<include refid="getSeekUserListCon" />
+		ORDER BY
+			c.id DESC
+		LIMIT #{pageIndex},#{pageSize}
+	</select>
+	
+	
+	<!-- 人员列表数 -->
+	<select id="getSeekUserListCount" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`seekuser` c
+		WHERE
+		<include refid="getSeekUserListCon" />
+	</select>
+	
+	<sql id="getSeekUserListCon">
+				c.delFlag = 0
+		<if test="name!=''">
+			AND 
+				c.`seekNm` like '%${name}%'
+		</if>
+	</sql>
+	
+	<update id="delSeekUserById" parameterType="map">
+		UPDATE seekUser
+		SET delFlag = 1
+		WHERE
+			id = #{id}
+	</update>
 </mapper>

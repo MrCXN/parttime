@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lzy.parttime.dao.CompanyDao;
 import com.lzy.parttime.entity.Company;
+import com.lzy.parttime.entity.SeekUser;
 import com.lzy.parttime.entity.User;
 import com.lzy.parttime.service.CompanyService;
 import com.lzy.parttime.utils.AESCoder;
@@ -167,6 +168,50 @@ public class CompanyServiceImpl implements CompanyService {
 			result.setCode(CodeConstant.CODE200);
 			result.setMsg("加载失败");
 			log.error("\r\n 编辑公司： errorcode=" + ErrorCode.geterrocode(this)+",company:"+company
+			+ "  \r\n" + e + "\r\n\r\n");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> findSeekUserList(String name, int pageIndex, int pageSize) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("code", 0);
+		map.put("msg", "查询成功");
+		Map<String, Object> params = new HashMap<>();
+		params.put("name",name);
+		params.put("pageIndex",(pageIndex - 1) * pageSize);
+		params.put("pageSize",pageSize);
+		try {
+			List<SeekUser> list = companyDao.getSeekUserList(params);
+			map.put("list", list);
+			int count = companyDao.getSeekUserListCount(params);
+			map.put("count", count);
+			return map;
+		} catch (Exception e) {
+			map.put("code", CodeConstant.CODE200);
+			map.put("msg", "查询失败");
+			log.error("\r\n 公司列表查询 ： errorcode=" + ErrorCode.geterrocode(this)
+			+ "  \r\n" + e + "\r\n" + ",name:" + name + "\r\n\r\n");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@Override
+	public Result delSeekUserById(Integer id) {
+		Result result = new Result();
+		result.setMsg("加载成功");
+		result.setCode(CodeConstant.CODE1000);
+		Map<String, Object> params = new HashMap<>();
+		params.put("id",id);
+		try {
+			companyDao.delSeekUserById(params);
+		} catch (Exception e) {
+			result.setCode(CodeConstant.CODE200);
+			result.setMsg("加载失败");
+			log.error("\r\n 删除人员： errorcode=" + ErrorCode.geterrocode(this)+",id:"+id
 			+ "  \r\n" + e + "\r\n\r\n");
 			e.printStackTrace();
 		}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzy.parttime.entity.Company;
+import com.lzy.parttime.entity.SeekUser;
 
 /**
  * 
@@ -64,5 +65,11 @@ public interface CompanyDao {
 	 * @createTime:2017年10月25日下午7:05:59
 	 */
 	void updateCompanyById(Map<String, Object> params);
+
+	List<SeekUser> getSeekUserList(Map<String, Object> params);
+
+	int getSeekUserListCount(Map<String, Object> params);
+
+	void delSeekUserById(Map<String, Object> params);
 
 }

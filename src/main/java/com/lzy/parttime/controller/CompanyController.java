@@ -40,6 +40,15 @@ public class CompanyController {
 	public ModelAndView companyIndex(){
 		return new ModelAndView("company_Index");
 	}
+	/**
+	 * 
+	 * @TODO: [招聘人员列表页面]
+	 * @createTime:2017年10月23日下午2:38:00
+	 */
+	@RequestMapping(value = "/seekUserIndex" )
+	public ModelAndView seekUserIndex(){
+		return new ModelAndView("seekUser_index");
+	}
 	
 	/**
 	 * @TODO: [公司列表]
@@ -48,6 +57,16 @@ public class CompanyController {
 	@RequestMapping("/findCompanyList")
 	public @ResponseBody Map<String, Object> findCompanyList(String addTime,String name,int pageIndex, int pageSize){
 		Map<String, Object> map = companyService.findCompanyList(addTime,name,pageIndex,pageSize);
+		return map;
+	}
+	
+	/**
+	 * @TODO: [人员列表]
+	 * @createTime:2017年10月23日下午3:30:09
+	 */
+	@RequestMapping("/findSeekUserList")
+	public @ResponseBody Map<String, Object> findSeekUserList(String name,int pageIndex, int pageSize){
+		Map<String, Object> map = companyService.findSeekUserList(name,pageIndex,pageSize);
 		return map;
 	}
 	
@@ -107,6 +126,19 @@ public class CompanyController {
 	public @ResponseBody Map<String, Object> delCompanyById(Integer id){
 		Map<String, Object> map = new HashMap<>();
 		Result result = companyService.delCompanyById(id);
+		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
+	}
+	/**
+	 * 
+	 * @TODO: [删除人员]
+	 * @param company
+	 * @return: 
+	 * @createTime:2017年10月24日下午8:04:45
+	 */
+	@RequestMapping(value = "/delSeekUserById" )
+	public @ResponseBody Map<String, Object> delSeekUserById(Integer id){
+		Map<String, Object> map = new HashMap<>();
+		Result result = companyService.delSeekUserById(id);
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	

@@ -62,4 +62,8 @@ public interface CompanyService {
 	 */
 	Result editCompanyById(Company company);
 
+	Map<String, Object> findSeekUserList(String name, int pageIndex, int pageSize);
+
+	Result delSeekUserById(Integer id);
+
 }

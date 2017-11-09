@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>Table</title>
+		<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../css/global.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css"/>
+		<link rel="stylesheet" href="../css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+
+			<blockquote class="layui-elem-quote">
+				<div class="layui-input-inline">
+					名称:
+				</div>
+				<div class="layui-input-inline">
+					<input type="text" id="name" name="name" class="layui-input"/>
+				</div>
+				<a href="javascript:;" class="layui-btn" id="search">
+					<i class="layui-icon">&#xe615;</i> 搜索
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>人员详情</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table">
+						<thead>
+							<tr>
+								<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary" /> </th>
+								<th>名称</th>
+								<th>电话</th>
+								<th>密码</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="seekUser">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="paged" class="page">
+				</div>
+			</div>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			{{# layui.each(d.list, function(index, i){ }}
+			<tr>
+				<td><input type="checkbox" lay-skin="primary" /></td>
+				<td>{{ i.seekNm }}</td>
+				<td>{{ i.phone }}</td>
+				<td>{{ i.password }}</td>
+				<td>
+					<a href="javascript:;" data-id="{{ i.id }}"  class="layui-btn layui-btn-danger layui-btn-mini del">删除</a>
+				</td>
+			</tr>
+			{{# }); }}
+		</script>
+		<script type="text/javascript" src="../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../js/seekUser_index.js"></script>
+	</body>
+
+</html>
