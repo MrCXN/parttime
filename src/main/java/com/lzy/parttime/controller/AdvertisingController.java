@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lzy.parttime.entity.Advertising;
-import com.lzy.parttime.entity.Company;
 import com.lzy.parttime.service.AdvertisingService;
 import com.lzy.parttime.utils.CheckUtil;
 import com.lzy.parttime.utils.Result;
@@ -37,6 +36,7 @@ public class AdvertisingController {
 	 */
 	@RequestMapping(value = "/advertisingIndex" )
 	public ModelAndView advertisingIndex(Integer id){
+		//跳转页面
 		return new ModelAndView("advertising_Index");
 	}
 	
@@ -47,6 +47,7 @@ public class AdvertisingController {
 	@RequestMapping("/findAdvertisingList")
 	public @ResponseBody Map<String, Object> findAdvertisingList(int companyId,String name,int pageIndex, int pageSize){
 		Map<String, Object> map = advertisingService.findAdvertisingList(companyId,name,pageIndex,pageSize);
+		//返回列表数据,map封装
 		return map;
 	}
 	
@@ -58,6 +59,7 @@ public class AdvertisingController {
 	@RequestMapping(value = "/editAdvertisingIndex" )
 	public ModelAndView editAdvertisingIndex(Integer id){
 		ModelAndView mv = new ModelAndView();
+		//要返回的页面:advertising_edit页面
 		mv.setViewName("advertising_edit");
 		return mv;
 	}
@@ -70,7 +72,9 @@ public class AdvertisingController {
 	@RequestMapping(value = "/getgetAdvertisingById" )
 	public @ResponseBody Map<String, Object> getgetAdvertisingById(Integer id){
 		Map<String, Object> map = new HashMap<>();
+		//result中封装了code: 常量用来定义返回状态的,msg 返回消息,data :返货数据
 		Result result = advertisingService.getgetAdvertisingById(id);
+		//返回结果集
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), result.getData());
 	}
 	
@@ -85,7 +89,9 @@ public class AdvertisingController {
 	@RequestMapping(value = "/editAdvertising" )
 	public @ResponseBody Map<String, Object> editAdvertising(Advertising advertising){
 		Map<String, Object> map = new HashMap<>();
+		//result中封装了code: 常量用来定义返回状态的,msg 返回消息,data :返货数据
 		Result result = advertisingService.editAdvertising(advertising);
+		//返回结果集
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	
@@ -96,6 +102,7 @@ public class AdvertisingController {
 	 */
 	@RequestMapping(value = "/addAdvertisingIndex" )
 	public ModelAndView addAdvertisingIndex(){
+		//跳转页面
 		return new ModelAndView("advertising_add");
 	}
 	
@@ -122,7 +129,9 @@ public class AdvertisingController {
 	@RequestMapping(value = "/delAdvertisingById" )
 	public @ResponseBody Map<String, Object> delAdvertisingById(Integer id){
 		Map<String, Object> map = new HashMap<>();
+		// result中封装了code: 常量用来定义返回状态的,msg 返回消息,data :返货数据
 		Result result = advertisingService.delAdvertisingById(id);
+		//返回结果集
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 }

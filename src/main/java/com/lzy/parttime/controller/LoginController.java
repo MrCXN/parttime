@@ -37,6 +37,7 @@ public class LoginController {
 	@RequestMapping("/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
+		//页面首页,登录页面
 		mv.setViewName("login");
 		return mv;
 	}
@@ -47,8 +48,10 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/doLogin")
 	public Map<String, Object> loginIndex(User user ) {
+		//后台用户信息
 		Map<String, Object> map = new HashMap<>();
 		Result result =  loginService.doLogin(user);
+		//返回验证的结果
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	
@@ -59,6 +62,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/index" )
 	public ModelAndView loginIndex(){
+		//跳转到首页面
 		return new ModelAndView("index");
 	}
 	
@@ -69,6 +73,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/main" )
 	public ModelAndView main(){
+		//跳转到主业面
 		return new ModelAndView("main");
 	}
 }

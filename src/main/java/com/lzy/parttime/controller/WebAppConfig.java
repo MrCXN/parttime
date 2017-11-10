@@ -7,10 +7,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @ClassName: WebAppConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author Administrator
- * @date 2017年7月11日
+ * 
+ * @author 李兆阳
+ * @description : [虚拟路径转换]
+ *
+ * @时间: 2017年11月10日 上午10:27:08
  */
 @Configuration
 public class WebAppConfig extends WebMvcConfigurerAdapter {

@@ -62,8 +62,24 @@ public interface CompanyService {
 	 */
 	Result editCompanyById(Company company);
 
+	/**
+	 * 
+	 * @TODO: [招聘者的集合]
+	 * @param name
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return: 
+	 * @createTime:2017年11月10日上午10:29:35
+	 */
 	Map<String, Object> findSeekUserList(String name, int pageIndex, int pageSize);
 
+	/**
+	 * 
+	 * @TODO: [删除招聘者]
+	 * @param id
+	 * @return: 
+	 * @createTime:2017年11月10日上午10:29:53
+	 */
 	Result delSeekUserById(Integer id);
 
 }

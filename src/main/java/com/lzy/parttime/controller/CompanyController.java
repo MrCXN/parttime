@@ -1,13 +1,11 @@
 package com.lzy.parttime.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +27,7 @@ import com.lzy.parttime.utils.Result;
 public class CompanyController {
 
 	@Resource
-	private CompanyService companyService;
+	private CompanyService companyService;//service接口
 	
 	/**
 	 * 
@@ -38,6 +36,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/companyIndex" )
 	public ModelAndView companyIndex(){
+		//返回company_Index页面
 		return new ModelAndView("company_Index");
 	}
 	/**
@@ -47,6 +46,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/seekUserIndex" )
 	public ModelAndView seekUserIndex(){
+		//返回seekUser_index页面
 		return new ModelAndView("seekUser_index");
 	}
 	
@@ -56,6 +56,7 @@ public class CompanyController {
 	 */
 	@RequestMapping("/findCompanyList")
 	public @ResponseBody Map<String, Object> findCompanyList(String addTime,String name,int pageIndex, int pageSize){
+		//返回公司列表集合,用map封装
 		Map<String, Object> map = companyService.findCompanyList(addTime,name,pageIndex,pageSize);
 		return map;
 	}
@@ -66,6 +67,7 @@ public class CompanyController {
 	 */
 	@RequestMapping("/findSeekUserList")
 	public @ResponseBody Map<String, Object> findSeekUserList(String name,int pageIndex, int pageSize){
+		//返回人员列表集合
 		Map<String, Object> map = companyService.findSeekUserList(name,pageIndex,pageSize);
 		return map;
 	}
@@ -79,6 +81,7 @@ public class CompanyController {
 	public ModelAndView editIndex(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("company_edit");
+		//返回company_edit页面
 		return mv;
 	}
 	/**
@@ -88,6 +91,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/addCompanyIndex" )
 	public ModelAndView addIndex(){
+		//返回company_add页面
 		return new ModelAndView("company_add");
 	}
 	/**
@@ -98,8 +102,11 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/saveCompany" )
 	public @ResponseBody Map<String, Object> saveCompany(Company company){
+		//company 页面传给后台的公司信息
 		Map<String, Object> map = new HashMap<>();
+		//添加公司, 返回result,result中封装了code: 常量用来定义返回状态的,msg 返回消息,data :返货数据
 		Result result = companyService.saveCompany(company);
+		//返回结果集
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	/**
@@ -111,8 +118,11 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/getCompanyById" )
 	public @ResponseBody Map<String, Object> getCompanyById(Integer id){
+		//id 公司id
 		Map<String, Object> map = new HashMap<>();
+		//查询公司
 		Result result = companyService.getCompanyById(id);
+		//返回查询结果,返回结果集
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), result.getData());
 	}
 	/**
@@ -124,8 +134,11 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/delCompanyById" )
 	public @ResponseBody Map<String, Object> delCompanyById(Integer id){
+		//公司id
 		Map<String, Object> map = new HashMap<>();
+		//删除公司信息, 这里的删除不是真正的删除, 只是更改了公司中标志为的状态
 		Result result = companyService.delCompanyById(id);
+		//返回删除结果
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	/**
@@ -137,8 +150,11 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/delSeekUserById" )
 	public @ResponseBody Map<String, Object> delSeekUserById(Integer id){
+		//人员id
 		Map<String, Object> map = new HashMap<>();
+		//删除人员, 这里的删除只是更改了人员的标志位
 		Result result = companyService.delSeekUserById(id);
+		//返回删除结果
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	
@@ -151,8 +167,11 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/editCompanyById" )
 	public @ResponseBody Map<String, Object> editCompanyById(Company company){
+		//company 公司信息
 		Map<String, Object> map = new HashMap<>();
+		//编辑公司
 		Result result = companyService.editCompanyById(company);
+		//返回编辑结果
 		return CheckUtil.returnResult(map,result.getCode(), result.getMsg(), "");
 	}
 	

@@ -13,6 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 
+ * @author 李兆阳
+ * @description : [上传图片]
+ *
+ * @时间: 2017年11月10日 上午10:25:08
+ */
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
@@ -23,10 +30,12 @@ public class UploadController {
 		try {
 			// 图片改名
 			String filename = pic.getOriginalFilename();
-			String suffix = FilenameUtils.getExtension(filename); // 后缀   无"."
+			 // 后缀   无"."
+			String suffix = FilenameUtils.getExtension(filename);
+			//uuid,给上传图片重新起名字
 			String uuid = UUID.randomUUID().toString().replace("-", "");
 			String newName = uuid + "." + suffix;
-			
+			//照片大小
 			long size = pic.getSize();
 			if(size>=1048576){
 				jsonObject.put("msg", "图片过大");
@@ -44,7 +53,7 @@ public class UploadController {
 				response.setContentType("application/json;charset=UTF-8");
 				response.getWriter().write(jsonObject.toString());
 			}
-		} catch (Exception e) {
+		} catch (Exception e) {//异常处理
 			try {
 				jsonObject.put("code", 500); // 保存图片地址
 				jsonObject.put("msg", "图片过大");

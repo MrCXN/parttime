@@ -52,7 +52,7 @@ public interface AdvertisingService {
 	 */
 	Result editAdvertising(Advertising advertising);
 
-	/**\
+	/**
 	 * 
 	 * @TODO: [删除广告]
 	 * @param id

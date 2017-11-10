@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lzy.parttime.dao.AdvertisingDao;
 import com.lzy.parttime.entity.Advertising;
-import com.lzy.parttime.entity.Company;
 import com.lzy.parttime.service.AdvertisingService;
 import com.lzy.parttime.utils.CodeConstant;
 import com.lzy.parttime.utils.ErrorCode;
