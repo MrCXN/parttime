@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 /**
  * 
- * @author 李兆阳
+ * @author j_cxn
  * @description : [虚拟路径转换]
  *
  * @时间: 2017年11月10日 上午10:27:08

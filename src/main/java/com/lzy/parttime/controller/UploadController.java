@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 
- * @author 李兆阳
+ * @author j_cxn
  * @description : [上传图片]
  *
  * @时间: 2017年11月10日 上午10:25:08
